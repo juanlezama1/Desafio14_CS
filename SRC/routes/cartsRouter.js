@@ -2,7 +2,6 @@ import { Router } from "express"
 import { cartModel } from "../models/carts.js"
 import cartCheckout from "../controllers/cartController.js"
 
-
 const cartsRouter = Router ()
 
 // LECTURA DE UN CARRITO ESPECÍFICO
@@ -45,7 +44,7 @@ cartsRouter.get('/:cid/purchase', async (req, res) => {
     catch (error)
 
     {
-        console.log("Error al generar el carrito: ", error)
+        req.logger.error("Error al generar el carrito: ", error)
     }
 })
 
@@ -92,6 +91,7 @@ cartsRouter.put('/:cid/products/:pid', async (req, res) => {
 
     {
         res.status(400).render('templates/error', {error_description: "El carrito no existe"})
+        req.logger.error(error)
     }
 })
 
@@ -121,6 +121,7 @@ cartsRouter.delete('/:cid/products/:pid', async (req, res) => {
 
     {
         res.status(400).render('templates/error', {error_description: "El carrito no existe!"})
+        req.logger.error(error)
     }
 })
 
@@ -140,6 +141,7 @@ cartsRouter.delete('/:cid/', async (req, res) => {
 
     {
         res.status(400).render('templates/error', {error_description: "El carrito no existe!"})
+        req.logger.error(error)
     }
 })
 

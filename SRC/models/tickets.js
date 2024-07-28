@@ -35,10 +35,6 @@ const ticketSchema = new Schema ({
     },
 })
 
-ticketSchema.pre('save', () => {
-    console.log("Guardaste una orden de compra!")
-})
-
 ticketSchema.pre('find', async function(next){
 
     try {

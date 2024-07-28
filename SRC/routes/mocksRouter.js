@@ -24,7 +24,7 @@ mocksRouter.get('/', async (req, res) => {
     catch (error)
 
     {
-        console.error("Error al generar los Fake Products: ", error)
+        req.logger.error("Error al generar los Fake Products: ", error)
         res.status(500).send("Error al generar los Fake Products")
     }
 })
